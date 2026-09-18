@@ -1,0 +1,8 @@
+# Copy to terraform.tfvars (gitignored) and adjust per environment.
+# Run one apply per environment, e.g.:
+#   terraform apply -var environment=dev
+#   terraform apply -var environment=qa
+environment = "dev"
+
+# ansible_user                 = "vms"
+# ansible_ssh_private_key_file = "~/.ssh/vms-ai"

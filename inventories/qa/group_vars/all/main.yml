@@ -1,0 +1,16 @@
+---
+env: qa
+
+# --- Connection ---
+ansible_user: vms
+ansible_ssh_private_key_file: "~/.ssh/vms-ai"
+ansible_python_interpreter: /usr/bin/python3
+
+# --- Role knobs ---
+baseline_timezone: "UTC"
+baseline_extra_packages:
+  - curl
+  - wget
+  - ca-certificates
+docker_host_users:
+  - vms

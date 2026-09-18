@@ -1,0 +1,22 @@
+---
+# Non-secret, environment-wide variables for DEV.
+env: dev
+
+# --- Connection ---
+ansible_user: vms
+ansible_ssh_private_key_file: "~/.ssh/vms-ai"
+ansible_python_interpreter: /usr/bin/python3
+
+# --- company.infrastructure.baseline knobs ---
+baseline_timezone: "UTC"
+baseline_extra_packages:
+  - curl
+  - wget
+  - vim
+  - ca-certificates
+
+# --- company.infrastructure.docker_host knobs ---
+docker_host_users:
+  - vms
+
+# Secrets live in vault.yml (encrypted). See vault.yml.example for the shape.

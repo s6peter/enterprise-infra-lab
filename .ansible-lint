@@ -1,0 +1,11 @@
+---
+profile: moderate
+
+exclude_paths:
+  - .github/
+  - terraform/
+  - .venv/
+  - dist/
+  - collections/ansible_collections/community/
+  - collections/ansible_collections/ansible/
+  - collections/ansible_collections/ansible.posix/

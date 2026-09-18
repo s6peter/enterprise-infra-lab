@@ -1,0 +1,16 @@
+---
+# Top-level "site" playbook -- the single entrypoint per environment.
+#   ansible-playbook playbooks/site.yml --ask-become-pass
+#   ansible-playbook -i inventories/prod/hosts.ini playbooks/site.yml \
+#       --ask-become-pass --ask-vault-pass
+- name: Baseline all hosts
+  hosts: all
+  become: true
+  roles:
+    - role: company.infrastructure.baseline
+
+- name: Configure application and database tiers as Docker hosts
+  hosts: app:database
+  become: true
+  roles:
+    - role: company.infrastructure.docker_host

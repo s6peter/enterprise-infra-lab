@@ -1,0 +1,21 @@
+---
+# Execution Environment -- the containerized runtime AAP/AWX uses to run our
+# playbooks with pinned dependencies (the enterprise answer to "works on my
+# laptop"). Build with ansible-builder:
+#
+#   ansible-builder build -t company-ee:1.0 \
+#     -f execution-environment/execution-environment.yml
+#
+# Then push company-ee:1.0 to your registry and reference it from AAP/AWX.
+version: 3
+
+images:
+  base_image:
+    name: quay.io/ansible/awx-ee:latest
+
+dependencies:
+  galaxy: ../requirements.yml
+  python:
+    - requests
+  system:
+    - openssh-clients [platform:rpm]

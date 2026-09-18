@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  role_name: baseline
+  namespace: company
+  author: Platform Engineering
+  description: Common host baseline (packages, timezone, managed MOTD).
+  license: GPL-3.0-or-later
+  min_ansible_version: "2.15"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - jammy
+        - noble
+    - name: Debian
+      versions:
+        - bookworm
+  galaxy_tags:
+    - baseline
+    - linux
+dependencies: []

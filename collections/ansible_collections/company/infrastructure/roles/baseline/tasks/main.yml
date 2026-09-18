@@ -1,0 +1,23 @@
+---
+- name: Ensure baseline packages are present
+  ansible.builtin.package:
+    name: "{{ baseline_extra_packages }}"
+    state: present
+
+- name: Set the system timezone
+  community.general.timezone:
+    name: "{{ baseline_timezone }}"
+  notify: Restart cron
+
+- name: Deploy the managed message-of-the-day
+  ansible.builtin.copy:
+    dest: /etc/motd
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      ***********************************************************************
+      * {{ inventory_hostname }} -- managed by company.infrastructure
+      * Environment: {{ env | default('unknown') }}
+      * Unauthorized access is prohibited. Manual changes are overwritten.
+      ***********************************************************************

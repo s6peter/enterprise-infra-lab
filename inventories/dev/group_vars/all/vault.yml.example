@@ -1,0 +1,9 @@
+---
+# Copy this to vault.yml, fill in real values, then encrypt it:
+#   cp vault.yml.example vault.yml
+#   ansible-vault encrypt inventories/dev/group_vars/all/vault.yml
+#
+# Reference these as {{ vault_* }} from playbooks/roles. The encrypted vault.yml
+# is safe to commit; this .example (plaintext) must never hold real secrets.
+vault_postgres_password: "CHANGE-ME-dev-db-password"
+vault_sonarqube_admin_password: "CHANGE-ME-dev-sonar-password"

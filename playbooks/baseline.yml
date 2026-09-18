@@ -1,0 +1,8 @@
+---
+# Apply the common baseline to every host in the environment.
+# Requires privilege escalation (--ask-become-pass on the home lab).
+- name: Apply common baseline
+  hosts: all
+  become: true
+  roles:
+    - role: company.infrastructure.baseline

@@ -1,0 +1,7 @@
+---
+# Default baseline configuration. Override in inventory group_vars.
+baseline_timezone: "UTC"
+baseline_extra_packages:
+  - curl
+  - wget
+  - ca-certificates

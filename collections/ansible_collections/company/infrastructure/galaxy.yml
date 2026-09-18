@@ -1,0 +1,25 @@
+---
+namespace: company
+name: infrastructure
+version: 1.0.0
+readme: README.md
+authors:
+  - "Platform Engineering <platform@company.example>"
+description: >-
+  Reusable, internally-certified automation building blocks for the company
+  platform: host baseline and Docker host configuration.
+license:
+  - GPL-3.0-or-later
+tags:
+  - infrastructure
+  - baseline
+  - docker
+  - linux
+repository: "https://github.com/s6peter/enterprise-infra-lab"
+dependencies:
+  "ansible.posix": ">=1.5.0"
+  "community.general": ">=8.0.0"
+  "community.docker": ">=3.4.0"
+build_ignore:
+  - "*.tar.gz"
+  - ".git"

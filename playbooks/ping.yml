@@ -1,0 +1,10 @@
+---
+# Connectivity smoke test -- no privilege required.
+#   ansible-playbook playbooks/ping.yml                          # dev (default)
+#   ansible-playbook -i inventories/qa/hosts.ini playbooks/ping.yml
+- name: Verify connectivity to all managed hosts
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Ping each host
+      ansible.builtin.ping:

@@ -1,0 +1,18 @@
+# MANAGED BY TERRAFORM -- do not edit by hand.
+# Environment: ${environment}
+%{ for group, hosts in fleet ~}
+[${group}]
+%{ for h in hosts ~}
+${h.name} ansible_host=${h.ip}
+%{ endfor ~}
+
+%{ endfor ~}
+[${environment}:children]
+%{ for group, hosts in fleet ~}
+${group}
+%{ endfor ~}
+
+[${environment}:vars]
+env=${environment}
+ansible_user=${ansible_user}
+ansible_ssh_private_key_file=${ansible_ssh_private_key_file}

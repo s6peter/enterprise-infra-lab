@@ -1,0 +1,39 @@
+# --- Secrets & keys (never commit) ---
+*.vault-pass
+.vault_pass*
+vault-password*
+*.pem
+*.key
+
+# --- Terraform ---
+terraform/.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+!*.tfvars.example
+terraform/generated/
+
+# --- Ansible ---
+*.retry
+dist/
+collections/ansible_collections/company/infrastructure/*.tar.gz
+
+# --- Downloaded collection dependencies (keep only our own namespace) ---
+collections/ansible_collections/*/
+!collections/ansible_collections/company/
+
+# --- Python / tooling ---
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# --- Ansible / ansible-lint local caches ---
+.ansible/
+.cache/
+
+# --- OS / editor cruft ---
+.DS_Store
+*.swp
