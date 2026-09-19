@@ -8,8 +8,8 @@
     state: present
     update_cache: true
     lock_timeout: 300
-  register: docker_prereqs
-  until: docker_prereqs is succeeded
+  register: docker_host_prereqs
+  until: docker_host_prereqs is succeeded
   retries: 5
   delay: 15
 
@@ -51,8 +51,8 @@
     state: present
     update_cache: true
     lock_timeout: 300
-  register: docker_install
-  until: docker_install is succeeded
+  register: docker_host_install
+  until: docker_host_install is succeeded
   retries: 5
   delay: 15
 
