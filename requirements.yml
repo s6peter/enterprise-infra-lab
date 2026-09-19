@@ -1,10 +1,9 @@
 ---
-# Ansible collection dependencies for this repo.
-# Install with: ansible-galaxy collection install -r requirements.yml
-collections:
-  - name: ansible.posix
-    version: ">=1.5.0"
-  - name: community.general
-    version: ">=8.0.0"
-  - name: community.docker
-    version: ">=3.4.0"
+# The company.infrastructure roles use only ansible.builtin, so there are no
+# external collection dependencies to install. This file is kept as the
+# conventional place to declare them if you add roles/modules that need one.
+#
+# NOTE for AAP/AWX: it deliberately does NOT auto-install from this root path --
+# only from collections/requirements.yml. We omit that file on purpose so an
+# air-gapped controller never tries to reach galaxy.ansible.com on project sync.
+collections: []

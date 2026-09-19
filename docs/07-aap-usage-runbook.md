@@ -87,8 +87,16 @@ an SSH key). Skip for a public repo.
 - Source Control Credential: the one from step 2 (if private)
 - Options: check **Update Revision on Launch** (always run latest), **Clean**,
   **Delete**
-- **Save**, then **Sync**. On sync AAP auto-installs the collections listed in
-  `collections/requirements.yml` (that's why that file exists).
+- **Save**, then **Sync** (just a git clone — fast).
+
+> **Offline / air-gapped note:** this repo has **no** `collections/requirements.yml`
+> on purpose. That file makes AAP run `ansible-galaxy collection install` on every
+> project sync, which hangs for minutes and fails if the controller can't reach
+> `galaxy.ansible.com`. Instead, the `company.infrastructure` roles use only
+> `ansible.builtin`, so they run in **any** Execution Environment with nothing to
+> install. If you later add a role that needs a community collection, bundle it in
+> a **custom EE** (`execution-environment/`), not via project-sync galaxy — that's
+> the enterprise, air-gap-safe pattern.
 
 ### 4. Inventory
 

@@ -4,9 +4,23 @@
     name: "{{ baseline_extra_packages }}"
     state: present
 
-- name: Set the system timezone
-  community.general.timezone:
-    name: "{{ baseline_timezone }}"
+# Timezone is set with pure ansible.builtin so the role needs no external
+# collections -- it runs in any Execution Environment, including air-gapped.
+- name: Set the system timezone (/etc/localtime)
+  ansible.builtin.file:
+    src: "/usr/share/zoneinfo/{{ baseline_timezone }}"
+    dest: /etc/localtime
+    state: link
+    force: true
+  notify: Restart cron
+
+- name: Persist the timezone name in /etc/timezone
+  ansible.builtin.copy:
+    dest: /etc/timezone
+    content: "{{ baseline_timezone }}\n"
+    owner: root
+    group: root
+    mode: "0644"
   notify: Restart cron
 
 - name: Deploy the managed message-of-the-day

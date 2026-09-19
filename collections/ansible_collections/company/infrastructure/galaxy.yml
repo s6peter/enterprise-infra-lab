@@ -16,10 +16,9 @@ tags:
   - docker
   - linux
 repository: "https://github.com/s6peter/enterprise-infra-lab"
-dependencies:
-  "ansible.posix": ">=1.5.0"
-  "community.general": ">=8.0.0"
-  "community.docker": ">=3.4.0"
+# Roles use only ansible.builtin, so the collection has no external
+# dependencies -- it runs in any Execution Environment, air-gapped included.
+dependencies: {}
 build_ignore:
   - "*.tar.gz"
   - ".git"
