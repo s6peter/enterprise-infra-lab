@@ -3,6 +3,10 @@
   ansible.builtin.package:
     name: "{{ baseline_extra_packages }}"
     state: present
+  register: baseline_pkgs
+  until: baseline_pkgs is succeeded
+  retries: 5
+  delay: 15
 
 # Timezone is set with pure ansible.builtin so the role needs no external
 # collections -- it runs in any Execution Environment, including air-gapped.

@@ -7,6 +7,11 @@
       - gnupg
     state: present
     update_cache: true
+    lock_timeout: 300
+  register: docker_prereqs
+  until: docker_prereqs is succeeded
+  retries: 5
+  delay: 15
 
 - name: Ensure the apt keyrings directory exists
   ansible.builtin.file:
@@ -45,6 +50,11 @@
       - docker-compose-plugin
     state: present
     update_cache: true
+    lock_timeout: 300
+  register: docker_install
+  until: docker_install is succeeded
+  retries: 5
+  delay: 15
 
 - name: Ensure the Docker service is enabled and running
   ansible.builtin.service:
