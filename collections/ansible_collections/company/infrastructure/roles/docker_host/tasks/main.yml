@@ -20,16 +20,20 @@
     dest: /etc/apt/keyrings/docker.asc
     mode: "0644"
 
-- name: Add the Docker apt repository
-  ansible.builtin.apt_repository:
-    repo: >-
+# Write a single canonical source file (overwrite) rather than appending, so a
+# host with a pre-existing/conflicting Docker source is normalized to one line.
+- name: Configure the Docker apt repository (single canonical source)
+  ansible.builtin.copy:
+    dest: /etc/apt/sources.list.d/docker.list
+    owner: root
+    group: root
+    mode: "0644"
+    content: >-
       deb [arch={{ 'amd64' if ansible_facts['architecture'] == 'x86_64'
       else ansible_facts['architecture'] }}
       signed-by=/etc/apt/keyrings/docker.asc]
       https://download.docker.com/linux/ubuntu
       {{ ansible_facts['distribution_release'] }} stable
-    filename: docker
-    state: present
 
 - name: Install Docker Engine and the Compose plugin
   ansible.builtin.apt:
